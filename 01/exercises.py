@@ -1,7 +1,12 @@
 # Exercicio 01
 def max_consecutive_sum(nums):
-    # implementar a solução aqui
-    pass
+    current_sum = max_sum = nums[0]
+
+    for num in nums[1:]:
+        current_sum = max(num, current_sum + num)
+        max_sum = max(max_sum, current_sum)
+
+    return max_sum
 
 # Testes 01
 def test_max_consecutive_sum():
@@ -14,8 +19,7 @@ def test_max_consecutive_sum():
 
 # Exercício 02
 def is_palindrome(word):
-    # implementar a solução aqui
-    pass
+    return word == word[::-1]
 
 # Testes 02
 def text_is_palindrome():
@@ -31,8 +35,18 @@ def text_is_palindrome():
 
 # Exercício 03
 def count_increasing_subsets(nums):
-    # implementar a solução aqui
-    pass
+    if not nums:
+        return 0
+
+    n = len(nums)
+    contagem = [1] * n 
+
+    for i in range(1, n):
+        for j in range(i):
+            if nums[i] > nums[j]:
+                contagem[i] += contagem[j]
+
+    return sum(contagem)
 
 # Testes 03
 def test_count_increasing_subsets():
@@ -53,5 +67,7 @@ def test_count_increasing_subsets():
 # Run the tests
 if __name__ == "__main__":
     test_max_consecutive_sum()
+    print("======================")
     text_is_palindrome()
+    print("======================")
     test_count_increasing_subsets()
